@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>
+			net462;
+			netcoreapp3.1;
+			net6.0;
+			net8.0;  
+		</TargetFrameworks>
+		
+		<ImplicitUsings>enable</ImplicitUsings>
+		
+		<Nullable>enable</Nullable>
+		
+		<AssemblyName>Promise.Core</AssemblyName>
+
+		<PackageVersion>1.0.1</PackageVersion>
+	</PropertyGroup>
+
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0"  PrivateAssets="All"/>
+	</ItemGroup>
+
+	<Import Project="$(SolutionDir)\GlobalCompileSettings.Targets" />
+
+</Project>

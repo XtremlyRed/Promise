@@ -6,3 +6,5 @@
 /bin/AnyCPU
 /.vs/ProjectEvaluation
 /Promise/obj
+/PromiseTests/obj
+/PromiseTests/bin

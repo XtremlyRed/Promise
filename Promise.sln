@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promise", "Promise\Promise.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromiseTests", "PromiseTests\PromiseTests.csproj", "{A314BCE0-3253-4709-8BD7-4A9F79765164}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promise.Wpf", "Promise.Wpf\Promise.Wpf.csproj", "{F3007B35-CF89-435D-92F7-68F560B4B139}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solutions", ".solutions", "{3F19E9C6-52D8-405B-9CF5-0F13C16485EA}"
+	ProjectSection(SolutionItems) = preProject
+		GlobalCompileSettings.Targets = GlobalCompileSettings.Targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +28,10 @@ Global
 		{A314BCE0-3253-4709-8BD7-4A9F79765164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A314BCE0-3253-4709-8BD7-4A9F79765164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A314BCE0-3253-4709-8BD7-4A9F79765164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3007B35-CF89-435D-92F7-68F560B4B139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3007B35-CF89-435D-92F7-68F560B4B139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3007B35-CF89-435D-92F7-68F560B4B139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3007B35-CF89-435D-92F7-68F560B4B139}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

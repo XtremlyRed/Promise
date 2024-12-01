@@ -14,7 +14,8 @@
 	</ItemGroup>
 
 	<PropertyGroup>
-		<Version>1.0</Version>
+
+		<PackageVersion>1.0.1</PackageVersion>
 		<AssemblyVersion>1.0</AssemblyVersion>
 		<LangVersion>12.0</LangVersion>
 		<PackageProjectUrl>https://github.com/xtremlyred/promise</PackageProjectUrl>

@@ -1,6 +1,11 @@
 ﻿global using System;
+global using System.ComponentModel;
 global using static System.Diagnostics.DebuggerBrowsableState;
 global using System.Linq;
+global using System.Runtime.InteropServices;
+global using System.Windows.Controls.Primitives;
+global using System.Windows.Data;
+global using System.Windows.Markup;
 global using Application = System.Windows.Application;
 global using BF = System.Reflection.BindingFlags;
 global using Binding = System.Windows.Data.Binding;
@@ -19,13 +24,10 @@ global using Point = System.Windows.Point;
 global using Size = System.Windows.Size;
 global using TextBox = System.Windows.Controls.TextBox;
 global using UserContorl = System.Windows.Controls.UserControl;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Windows.Markup;
 
-[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Promise.Wpf")]
-[assembly: XmlnsDefinition("https://github.com/xtremlyred/alter", "Promise.Wpf")]
-[assembly: XmlnsPrefix("Promise.Wpf", "alter")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Primose.Wpf")]
+[assembly: XmlnsDefinition("https://github.com/xtremlyred/Primose.Wpf", "Primose.Wpf")]
+[assembly: XmlnsPrefix("Primose.Wpf", "primose")]
 
 namespace System.Runtime.CompilerServices
 {

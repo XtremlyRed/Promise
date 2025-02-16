@@ -21,9 +21,9 @@ public static class PopupServiceExtensions
     /// <param name="title"></param>
     /// <param name="buttonContents"></param>
     /// <returns></returns>
-    public static async ValueTask ShowAsync(this IPopupService popupService, string content, string? title = null, params string[] buttonContents)
+    public static async ValueTask ShowAsync(this IPopupService popupService, string content, string? title = null, IDictionary<ButtonResult, string>? buttonContents = null)
     {
-        PopupContext context = buttonContents;
+        PopupContext? context = buttonContents?.ToDictionary(i => i.Key, i => i.Value);
         await popupService.ShowAsync(content, title, context);
     }
 
@@ -35,9 +35,9 @@ public static class PopupServiceExtensions
     /// <param name="title"></param>
     /// <param name="buttonContents"></param>
     /// <returns></returns>
-    public static async ValueTask<ButtonResult> ConfirmAsync(this IPopupService popupService, string content, string? title = null, params string[] buttonContents)
+    public static async ValueTask<ButtonResult> ConfirmAsync(this IPopupService popupService, string content, string? title = null, IDictionary<ButtonResult, string>? buttonContents = null)
     {
-        PopupContext context = buttonContents;
+        PopupContext? context = buttonContents?.ToDictionary(i => i.Key, i => i.Value);
         var result = await popupService.ConfirmAsync(content, title, context);
 
         return result;
@@ -52,9 +52,9 @@ public static class PopupServiceExtensions
     /// <param name="title"></param>
     /// <param name="buttonContents"></param>
     /// <returns></returns>
-    public static async ValueTask ShowAsyncIn(this IPopupService popupService, string hostedName, string content, string? title = null, params string[] buttonContents)
+    public static async ValueTask ShowAsyncIn(this IPopupService popupService, string hostedName, string content, string? title = null, IDictionary<ButtonResult, string>? buttonContents = null)
     {
-        PopupContext context = buttonContents;
+        PopupContext? context = buttonContents?.ToDictionary(i => i.Key, i => i.Value);
         await popupService.ShowAsyncIn(hostedName, content, title, context);
     }
 
@@ -67,9 +67,9 @@ public static class PopupServiceExtensions
     /// <param name="title"></param>
     /// <param name="buttonContents"></param>
     /// <returns></returns>
-    public static async ValueTask<ButtonResult> ConfirmAsyncIn(this IPopupService popupService, string content, string hostedName, string? title = null, params string[] buttonContents)
+    public static async ValueTask<ButtonResult> ConfirmAsyncIn(this IPopupService popupService, string content, string hostedName, string? title = null, IDictionary<ButtonResult, string>? buttonContents = null)
     {
-        PopupContext context = buttonContents;
+        PopupContext? context = buttonContents?.ToDictionary(i => i.Key, i => i.Value);
         var result = await popupService.ConfirmAsyncIn(hostedName, content, title, context);
 
         return result;

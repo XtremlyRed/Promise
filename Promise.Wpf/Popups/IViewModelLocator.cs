@@ -1,27 +1,9 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Promise.Wpf;
-
-/// <summary>
-/// an <see langword="interface"/> of <see cref="IViewModelLocator"/>
-/// </summary>
-public interface IViewModelLocator
-{
-    /// <summary>
-    /// view model locate
-    /// </summary>
-    /// <param name="viewToken"></param>
-    /// <returns></returns>
-    object Locate(string viewToken);
-
-    /// <summary>
-    /// view model locate
-    /// </summary>
-    /// <param name="visual"></param>
-    /// <returns></returns>
-    object Locate(Visual visual);
-}
 
 /// <summary>
 /// a <see langword="class"/> of <see cref="ViewModelLocator"/>
@@ -29,13 +11,26 @@ public interface IViewModelLocator
 public static class ViewModelLocator
 {
     [DBA(Never)]
-    internal static IViewModelLocator? viewModelLocator;
+    internal static Func<Type, Type>? viewModelTypeLocator = DefaultViewTypeToViewModel;
+
+    [DBA(Never)]
+    internal static Func<Type, object>? viewModelLocator;
 
     /// <summary>
-    /// set popup view model locator when used
+    /// set   view model locator when used
+    /// </summary>
+    /// <param name="viewModelTypeLocator"></param>
+    public static void SetViewModelTypeLocator(Func<Type, Type> viewModelTypeLocator)
+    {
+        ViewModelLocator.viewModelTypeLocator = viewModelTypeLocator ?? throw new ArgumentNullException(nameof(viewModelTypeLocator));
+    }
+
+    /// <summary>
+    ///
     /// </summary>
     /// <param name="viewModelLocator"></param>
-    public static void SetViewModelLocator(IViewModelLocator viewModelLocator)
+    /// <exception cref="ArgumentNullException"></exception>
+    public static void SetViewModelLocator(Func<Type, object> viewModelLocator)
     {
         ViewModelLocator.viewModelLocator = viewModelLocator ?? throw new ArgumentNullException(nameof(viewModelLocator));
     }
@@ -68,7 +63,9 @@ public static class ViewModelLocator
                         throw new InvalidOperationException("invalid view model locator");
                     }
 
-                    var viewModel = viewModelLocator.Locate(visual);
+                    var viewModelType = viewModelTypeLocator(visual.GetType());
+
+                    var viewModel = viewModelLocator(viewModelType);
 
                     if (viewModel is not null && s is FrameworkElement element)
                     {
@@ -78,4 +75,14 @@ public static class ViewModelLocator
             }
         )
     );
+
+    private static Type DefaultViewTypeToViewModel(Type viewType)
+    {
+        var viewName = viewType.FullName;
+        viewName = viewName?.Replace(".Views.", ".ViewModels.");
+        var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
+        var suffix = viewName != null && viewName.EndsWith("View") ? "Model" : "ViewModel";
+        var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}{1}, {2}", viewName, suffix, viewAssemblyName);
+        return Type.GetType(viewModelName)!;
+    }
 }

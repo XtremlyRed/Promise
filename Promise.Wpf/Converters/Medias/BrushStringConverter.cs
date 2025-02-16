@@ -1,7 +1,6 @@
 ﻿namespace Promise.Wpf;
 
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Media;
 
 /// <summary>
@@ -9,7 +8,9 @@ using System.Windows.Media;
 /// </summary>
 public class BrushStringConverter : MediaConverter<string, Brush>
 {
+#if __WPF__
     static BrushConverter brushConverter = new BrushConverter();
+#endif
 
     /// <summary>
     /// convert from
@@ -18,6 +19,14 @@ public class BrushStringConverter : MediaConverter<string, Brush>
     /// <returns></returns>
     protected override Brush ConvertFrom(string from)
     {
+#if __WPF__
         return (Brush)brushConverter.ConvertFrom(from)!;
+#elif __AVALONIA__
+        return new SolidColorBrush(Color.Parse(from));
+#elif __MAUI__
+        return new SolidColorBrush(Color.FromArgb(from));
+#else
+        throw new NotImplementedException();
+#endif
     }
 }

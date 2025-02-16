@@ -1,4 +1,6 @@
-﻿namespace Promise.Wpf;
+﻿using System.Windows;
+
+namespace Promise.Wpf;
 
 /// <summary>
 /// a class of <see cref="LessThanOrEqualConverter"/>

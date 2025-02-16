@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 
 namespace Promise.Wpf;
 
@@ -22,14 +21,5 @@ public abstract class TrueFalseOrNullConverter<T> : TrueFalseConverter<T>, IValu
     /// <summary>
     ///  null value
     /// </summary>
-    public object? Null
-    {
-        get { return GetValue(NullProperty); }
-        set { SetValue(NullProperty, value); }
-    }
-
-    /// <summary>
-    /// The null property
-    /// </summary>
-    public static readonly DependencyProperty NullProperty = DependencyProperty.Register("Null", typeof(object), typeof(TrueFalseOrNullConverter<T>), new PropertyMetadata(null));
+    public object? Null { get; set; }
 }

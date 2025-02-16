@@ -34,7 +34,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition />
+                <RowDefinition MinHeight="75" />
                 <RowDefinition Height="80" />
             </Grid.RowDefinitions>
 
@@ -66,7 +66,7 @@
             <TextBlock
                 x:Name="TitleBox"
                 Margin="20,18,0,0"
-                FontSize="17"
+                FontSize="18"
                 FontWeight="Black"
                 Style="{x:Null}"
                 Text="{Binding Title}" />
@@ -93,7 +93,7 @@
                         BorderThickness="0"
                         ContextMenu="{x:Null}"
                         Cursor="Arrow"
-                        FontSize="13"
+                        FontSize="14"
                         IsReadOnly="True"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
                         Style="{x:Null}"
@@ -146,7 +146,7 @@
                                                 Margin="{TemplateBinding Padding}"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
-                                                FontSize="13"
+                                                FontSize="14"
                                                 LineHeight="auto"
                                                 Style="{x:Null}"
                                                 Text="{TemplateBinding Content}" />

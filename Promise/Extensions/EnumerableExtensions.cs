@@ -353,7 +353,7 @@ public static partial class EnumerableExtensions
     /// </summary>
     /// <typeparam name="Target">The type of the arget.</typeparam>
     /// <param name="source">The source.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     [DebuggerNonUserCode]
     public static void ForEach<Target>(this IEnumerable<Target> source, Action<Target> action)
     {
@@ -399,7 +399,7 @@ public static partial class EnumerableExtensions
     /// </summary>
     /// <typeparam name="Target">The type of the arget.</typeparam>
     /// <param name="source">The source.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     [DebuggerNonUserCode]
     public static void ForEach<Target>(this IEnumerable<Target> source, Action<Target, int> action)
     {

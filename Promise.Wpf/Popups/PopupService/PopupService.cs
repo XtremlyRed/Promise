@@ -7,6 +7,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Promise.Wpf.Services.PopupService;
+using static Promise.Wpf.PopupContext;
 
 namespace Promise.Wpf;
 
@@ -386,9 +387,11 @@ public class PopupService : IPopupService
                     {
                         var buttonContent = await taskCompletion.Task;
 
-                        if (context.buttonResult.TryGetValue(buttonContent, out ButtonResult bottonResult))
+                        if (context.buttonItems.Find(i => i.ButtonContent == buttonContent) is ButtonItem buttonItem)
                         {
-                            return bottonResult;
+                            buttonItem.ClickAction?.Invoke(buttonItem.ButtonResult);
+
+                            return buttonItem.ButtonResult;
                         }
 
                         throw new InvalidOperationException();

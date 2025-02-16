@@ -136,6 +136,5 @@ public interface IDialogAware
     /// <summary>
     /// request close <see langword="event"/>
     /// </summary>
-
     event Action<object>? RequestCloseEvent;
 }

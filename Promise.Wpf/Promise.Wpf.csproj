@@ -1,25 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-
-		<TargetFrameworks>net462;netcoreapp3.1;net6.0-windows;net8.0-windows</TargetFrameworks>
+		<TargetFrameworks>
+			net4.6.2;
+			netcoreapp3.1;
+			net6.0-windows;
+			net8.0-windows
+		</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
+		<LangVersion>11</LangVersion>
+		<PackageId>Promise.Wpf</PackageId>
+		<Description>wpf  popup , dialog , converter </Description>
+
+		<DefineConstants>$(DefineConstants);__WPF__</DefineConstants>
+
 	</PropertyGroup>
-
-
- 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
-		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
-	</ItemGroup>
-
 
 
 
 	<Import Project="$(SolutionDir)\GlobalCompileSettings.Targets" />
 
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net4.6.2'">
+		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
+		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Compile Remove="新建文件夹\**" />
+	  <EmbeddedResource Remove="新建文件夹\**" />
+	  <None Remove="新建文件夹\**" />
+	  <Page Remove="新建文件夹\**" />
+	</ItemGroup>
 
 
 </Project>

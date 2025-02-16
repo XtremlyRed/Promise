@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Data;
 
 namespace Promise.Wpf;
 
@@ -30,17 +29,7 @@ public abstract class CompareConverter : TrueFalseConverter<IComparable>
     /// <value>
     /// The compare value.
     /// </value>
-    public IComparable? Compare
-    {
-        get => GetValue(CompareProperty) as IComparable;
-        set => SetValue(CompareProperty, value);
-    }
-
-    /// <summary>
-    /// The compare value property
-    /// </summary>
-
-    public static readonly DependencyProperty CompareProperty = DependencyProperty.Register("Compare", typeof(IComparable), typeof(CompareConverter), new PropertyMetadata(default(object)));
+    public IComparable? Input { get; set; }
 
     /// <summary>
     ///
@@ -52,7 +41,7 @@ public abstract class CompareConverter : TrueFalseConverter<IComparable>
     /// <returns></returns>
     protected override object? Convert(IComparable value, Type targetType, object? parameter, CultureInfo culture)
     {
-        bool condiction = Match(value, Compare, compareMode);
+        bool condiction = Match(value, Input, compareMode);
 
         return condiction ? True : False;
     }

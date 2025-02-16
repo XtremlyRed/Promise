@@ -1,9 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace Promise.Wpf;
 
@@ -13,7 +10,7 @@ namespace Promise.Wpf;
 
 [ContentProperty(nameof(Converters))]
 [DefaultProperty(nameof(Converters))]
-public class CompositeConverter : ValueConverterBase<object>
+public partial class CompositeConverter : ValueConverterBase<object>
 {
     /// <summary>
     /// Gets or sets the converters.
@@ -21,16 +18,7 @@ public class CompositeConverter : ValueConverterBase<object>
     /// <value>
     /// The converters.
     /// </value>
-    public ConverterCollection Converters
-    {
-        get => (ConverterCollection)GetValue(ConvertersProperty)!;
-        set => SetValue(ConvertersProperty, value);
-    }
-
-    /// <summary>
-    /// The converters property
-    /// </summary>
-    public static readonly DependencyProperty ConvertersProperty = DependencyProperty.Register("Converters", typeof(ConverterCollection), typeof(CompositeConverter), new PropertyMetadata(new ConverterCollection()));
+    public ConverterCollection Converters { get; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CompositeConverter"/> class.
@@ -48,7 +36,7 @@ public class CompositeConverter : ValueConverterBase<object>
     /// <param name="parameter">The parameter.</param>
     /// <param name="culture">The culture.</param>
     /// <returns></returns>
-    protected override object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    protected sealed override object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         object? concurrent = value;
 
@@ -65,13 +53,13 @@ public class CompositeConverter : ValueConverterBase<object>
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    protected override object InputConvert(object? value)
+    protected sealed override object InputConvert(object? value)
     {
         return value!;
     }
-}
 
-/// <summary>
-/// a class of <see cref="ConverterCollection"/>
-/// </summary>
-public class ConverterCollection : Collection<IValueConverter> { }
+    /// <summary>
+    /// a class of <see cref="ConverterCollection"/>
+    /// </summary>
+    public sealed class ConverterCollection : Collection<IValueConverter> { }
+}

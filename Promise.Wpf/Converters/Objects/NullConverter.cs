@@ -32,19 +32,3 @@ public class NullConverter : TrueFalseConverter<object>
         return value!;
     }
 }
-
-/// <summary>
-/// a class of <see cref="NullToVisitilityConverter"/>
-/// </summary>
-/// <seealso cref="CompareConverter" />
-public class NullToVisitilityConverter : NullConverter
-{
-    /// <summary>
-    /// create a new instance of <see cref="EqualConverter"/>
-    /// </summary>
-    public NullToVisitilityConverter()
-    {
-        True = Visibility.Visible;
-        False = Visibility.Collapsed;
-    }
-}

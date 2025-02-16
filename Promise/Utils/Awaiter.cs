@@ -224,7 +224,7 @@ public static class AsyncLockerExtensions
     /// Locks the invoke.
     /// </summary>
     /// <param name="asyncLocker">The asynchronous locker.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     public static void LockInvoke(this Awaiter asyncLocker, Action action)
     {
         asyncLocker.Wait();

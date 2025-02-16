@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Data;
 
 namespace Promise.Wpf;
 
@@ -9,7 +8,14 @@ namespace Promise.Wpf;
 /// a class of <see cref="ValueConverterBase{T,TP}"/>
 /// </summary>
 /// <seealso cref="IValueConverter" />
-public abstract class ValueConverterBase<Input, InputParameter> : DependencyObject, IValueConverter
+public abstract partial class ValueConverterBase<Input, InputParameter> :
+#if __WPF__ || __AVALONIA__
+    MarkupExtension,
+#elif __MAUI__
+    IMarkupExtension,
+#endif
+
+        IValueConverter
 {
     /// <summary>
     /// Converts the specified value.
@@ -76,6 +82,21 @@ public abstract class ValueConverterBase<Input, InputParameter> : DependencyObje
     object? IValueConverter.ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         return ConvertBack(value, targetType, parameter, culture);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <returns></returns>
+    public
+#if __WPF__ || __AVALONIA__
+    override
+#endif
+
+    object ProvideValue(IServiceProvider serviceProvider)
+    {
+        return this;
     }
 }
 

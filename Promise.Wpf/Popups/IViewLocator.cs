@@ -32,4 +32,30 @@ public static class ViewLocator
     {
         ViewLocator.viewLocator = viewLocator ?? throw new ArgumentNullException(nameof(viewLocator));
     }
+
+    /// <summary>
+    /// set popup view locator when used
+    /// </summary>
+    /// <param name="viewLocatorFunc"></param>
+    public static void SetViewLocator(Func<string, Visual> viewLocatorFunc)
+    {
+        _ = viewLocatorFunc ?? throw new ArgumentNullException(nameof(viewLocator));
+
+        ViewLocator.viewLocator = new _ViewLocator(viewLocatorFunc);
+    }
+
+    internal class _ViewLocator : IViewLocator
+    {
+        Func<string, Visual> func;
+
+        public _ViewLocator(Func<string, Visual> func)
+        {
+            this.func = func ?? throw new ArgumentNullException(nameof(func));
+        }
+
+        public Visual Locate(string viewToken)
+        {
+            return func(viewToken);
+        }
+    }
 }

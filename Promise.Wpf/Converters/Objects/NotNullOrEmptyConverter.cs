@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Globalization;
+using System.Windows;
 
 namespace Promise.Wpf;
 

@@ -39,12 +39,12 @@ public static class SynchronizationContextExtensions
     record PostActionMap(Action Action) : PostMapBase<bool> { }
 
     /// <summary>
-    /// Posts the specified action.
+    /// Posts the specified taskfunc.
     /// </summary>
     /// <param name="context">The context.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     /// <exception cref="ArgumentNullException">
-    /// action
+    /// taskfunc
     /// or
     /// context
     /// </exception>
@@ -60,9 +60,9 @@ public static class SynchronizationContextExtensions
     /// Posts the asynchronous.
     /// </summary>
     /// <param name="context">The context.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     /// <exception cref="ArgumentNullException">
-    /// action
+    /// taskfunc
     /// or
     /// context
     /// </exception>
@@ -99,9 +99,9 @@ public static class SynchronizationContextExtensions
     /// Posts the asynchronous.
     /// </summary>
     /// <param name="context">The context.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     /// <exception cref="ArgumentNullException">
-    /// action
+    /// taskfunc
     /// or
     /// context
     /// </exception>
@@ -139,10 +139,10 @@ public static class SynchronizationContextExtensions
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="context">The context.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException">
-    /// action
+    /// taskfunc
     /// or
     /// context
     /// </exception>
@@ -180,10 +180,10 @@ public static class SynchronizationContextExtensions
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="context">The context.</param>
-    /// <param name="action">The action.</param>
+    /// <param name="action">The taskfunc.</param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException">
-    /// action
+    /// taskfunc
     /// or
     /// context
     /// </exception>
